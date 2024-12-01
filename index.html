@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kwok</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    #textBox {
+      font-size: 36px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="textBox">歌浅</div>
+
+  <script>
+    // 生成随机颜色的函数
+    function getRandomColor() {
+      let letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    // 获取用于显示文字的元素
+    const textBox = document.getElementById('textBox');
+
+    // 生成随机颜色并设置给文字
+    function setRandomColorToText() {
+      const randomColor = getRandomColor();
+      textBox.style.color = randomColor;
+    }
+
+    // 页面加载时设置文字为随机颜色
+    window.onload = setRandomColorToText;
+  </script>
+</body>
+
+</html>
