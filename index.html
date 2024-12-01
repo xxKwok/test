@@ -2,73 +2,59 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f4f4f4;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青云志</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-size: 24px;
+        }
 
-    #titleBox {
-      font-size: 40px;
-      text-align: center;
-    }
-    #textBox {
-      font-size: 36px;
-      text-align: center;
-    }
-  </style>
+        #poemBox {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-  <div id="titleBox">
-青云志
-明•徐霞客
-</div>
+    <div id="poemBox"></div>
 
-  <div id="textBox">
-无人扶我青云志，我自踏雪至山巅。
-若是命中无此运，亦可孤身登昆仑。
-红尘赠我三尺剑，酒看瘦马一世街。
-世人朝路乃绝涧，独见众生止步前。
-海到尽头天作岸，山登绝顶我为峰。
-如若东山能再起，大鹏展翅九万里。
-一入红尘梦易真，一朝悟透心境名。
-一朝悟道见真我，昔日枷锁皆云烟。
-天门将至百运开，拂尘轻笑问仙来。
-</div>
+    <script>
+        // 生成随机颜色的函数
+        function getRandomColor() {
+            let letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
 
-  <script>
-    // 生成随机颜色的函数
-    function getRandomColor() {
-      let letters = '0123456789ABCDEF';
-      let color = '#';
-      for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
-    }
+        // 诗的内容
+        const poemText = "无人扶我青云志，我自踏雪至山巅。若是命中无此运，亦可孤身登昆仑。红尘赠我三尺剑，酒看瘦马一世街。世人朝路乃绝涧，独见众生止步前。海到尽头天作岸，山登绝顶我为峰。如若东山能再起，大鹏展翅九万里。一入红尘梦易真，一朝悟透心境名。一朝悟道见真我，昔日枷锁皆云烟。天门将至百运开，拂尘轻笑问仙来。";
 
-    // 获取用于显示文字的元素
-    const titleBox = document.getElementById('titleBox');
-    const textBox = document.getElementById('textBox');
+        // 获取用于显示诗的元素
+        const poemBox = document.getElementById('poemBox');
 
-    // 生成随机颜色并设置给文字
-    function setRandomColorToText() {
-      const randomColor = getRandomColor();
-     titleBox.style.color = randomColor;
-     textBox.style.color = randomColor;
-    }
+        // 将诗的每个字设置为不同随机颜色并添加到页面
+        function setRandomColorsToEachChar() {
+            for (let i = 0; i < poemText.length; i++) {
+                const charSpan = document.createElement('span');
+                charSpan.textContent = poemText[i];
+                charSpan.style.color = getRandomColor();
+                poemBox.appendChild(charSpan);
+            }
+        }
 
-    // 页面加载时设置文字为随机颜色
-    window.onload = setRandomColorToText;
-  </script>
+        // 页面加载时执行设置每个字颜色的操作
+        window.onload = setRandomColorsToEachChar;
+    </script>
 </body>
 
 </html>
