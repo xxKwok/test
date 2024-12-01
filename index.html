@@ -17,12 +17,10 @@
 
     #title {
       font-size: 24px;
-      margin-bottom: 10px;
     }
 
     #author {
       font-size: 20px;
-      margin-bottom: 20px;
     }
 
     #poemBox {
@@ -52,19 +50,21 @@
       return color;
     }
 
-    // 生成随机浅色背景颜色的函数
-    function getRandomLightColor() {
-      let letters = '0123456789ABCDEF';
-      let color = '#';
-      for (let i = 0; i < 3; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      color += 'f';
+    // 生成满足条件的随机浅色背景颜色的函数
+    function getRandomLightColorAboveBBBBBB() {
+      let color;
+      do {
+        let letters = '0123456789ABCDEF';
+        color = '#';
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+      } while (color < '#BBBBBB');
       return color;
     }
 
-    // 设置背景颜色为随机浅色
-    document.body.style.backgroundColor = getRandomLightColor();
+    // 设置背景颜色为随机浅色（满足条件）
+    document.body.style.backgroundColor = getRandomLightColorAboveBBBBBB();
 
     // 获取标题元素并设置随机暗色颜色
     const title = document.getElementById('title');
@@ -75,7 +75,7 @@
     author.style.color = getRandomColorWithHighLuminance(false);
 
     // 诗的内容
-    const poemText = "无人扶我青云志，我自踏雪至山巅。\n若是命中无此运，亦可孤身登昆仑。\n红尘赠我三尺剑，酒看瘦马一世街。\n世人朝路乃绝涧，独见众生止步前。\n海到尽头天作岸，山登绝顶我为峰。\n如若东山能再起，大鹏展翅九万里。\n一入红尘梦易真，一朝悟透心境名。\n一朝悟道见真我，昔日枷锁皆云烟。\n天门将至百韵开，拂尘轻笑问仙来。";
+    const poemText = "无人扶我青云志，我自踏雪至山巅。\n若是命中无此运，亦可孤身登昆仑。\n红尘赠我三尺剑，酒看瘦马一世街。\n世人朝路乃绝涧，独见众生止步前。\n海到尽头天作岸，山登绝顶我为峰。\n如若东山能再起，大鹏展翅九万里。\n一入红尘梦易真，一朝悟透心境名。\n一朝悟道见真我，昔日枷锁皆云烟。\n天门将至百运开，拂尘轻笑问仙来。";
 
     // 获取用于显示诗的元素
     const poemBox = document.getElementById('poemBox');
