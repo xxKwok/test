@@ -18,7 +18,7 @@
         }
 
         /* 整体容器样式 */
-      .container {
+     .container {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -48,7 +48,7 @@
         }
 
         /* 用于并列两个按钮的容器样式 */
-      .buttons-container {
+     .buttons-container {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -75,10 +75,13 @@
             let outputText = '';
             let oText = '';
             for (let i = 0; i < inputText.length; i++) {
-                // 生成随机十六进制颜色代码
-                let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                // 生成随机十六进制颜色代码，避开包含字母b的情况
+                let randomColor;
+                do {
+                    randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                } while (randomColor.indexOf('b')!== -1);
                 oText += `<span style="color:${randomColor}">${inputText[i]}</span>`;
-                outputText += `<color=${randomColor}>${inputText[i]}</color>`;
+                outputText += inputText[i];
             }
             document.getElementById('outText').innerHTML = oText;
             document.getElementById('textOutput').textContent = outputText;
