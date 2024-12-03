@@ -45,7 +45,6 @@
             height: 120px;
             margin-bottom: 10px;
             padding: 5px;
-            //pointer-events: none;
         }
 
         /* 用于并列按钮的容器样式 */
@@ -105,7 +104,7 @@
         //输出内容
         function outholder(sText, outputText) {
             document.getElementById('outText').innerHTML = sText;
-            document.getElementById('textOutput').textContent = outputText;
+            document.getElementById('textOutput').value = outputText;
         }
 
         // 清空输入框
