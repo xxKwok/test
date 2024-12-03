@@ -102,7 +102,7 @@
         function getRandomColor() {
             let rc;
             do {
-                rc = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                rc = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
             } while (rc.indexOf('b')!== -1);
             return rc;
         }
