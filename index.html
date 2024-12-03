@@ -47,9 +47,9 @@
             padding: 5px;
         }
 
-        /* 用于并列两个按钮的容器样式 */
+        /* 用于并列按钮的容器样式 */
      .buttons-container {
-            width: 200px;
+            width: 215px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -58,33 +58,52 @@
 </head>
 
 <body>
-    <p id="outText"></p>
     <div class="container">
-        <input type="text" id="inputText" placeholder="请输入文字">
-        <button onclick="colorizeText()" style="margin-right: 10px;">生成随机颜色</button>
-        <textarea id="textOutput"></textarea>
+    <p>随机颜色生成</p>
+        <input type="text" id="inputText" placeholder="请输入文字" value="大坤坤">
         <div class="buttons-container">
-            <button onclick="clearText()" style="margin-right: 10px;">清空内容</button>
-            <button onclick="copyText()">点击复制</button>
+            <button onclick="colorizeText(true)" style="margin-right: 10px;">彩色文字</button>
+            <button onclick="colorizeText(false)" style="margin-right: 10px;">单色文字</button>
+            <button onclick="copyText()" style="margin-right: 10px;">点击复制</button>
+            <button onclick="clearText()">清空内容</button>
         </div>
+        <textarea id="textOutput"></textarea>
+        <div id="outText" style="font-size: 16px;"></div>
     </div>
 
     <script>
         // 生成随机颜色
-        function colorizeText() {
+        function colorizeText(b) {
             let inputText = document.getElementById('inputText').value;
             let outputText = '';
-            let oText = '';
-            for (let i = 0; i < inputText.length; i++) {
-                // 生成随机十六进制颜色代码，避开包含字母b的情况
-                let randomColor;
-                do {
-                    randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-                } while (randomColor.indexOf('b')!== -1);
-                oText += `<span style="color:${randomColor}">${inputText[i]}</span>`;
-                outputText += `<color=${randomColor}>${inputText[i]}</color>`;
+            let showText = '';
+            let randomColor = getRandomColor();
+           if (b) {
+                for (let i = 0; i < inputText.length; i++) {
+                    randomColor = getRandomColor();
+                    showText += `<span style="color:${randomColor}">${inputText[i]}</span>`;
+                    outputText += `<color=${randomColor}>${inputText[i]}</color>`;
+                }
+            } else if (!b) {
+                showText = `<span style="color:${randomColor}">${inputText}</span>`;
+                outputText = `<color=${randomColor}>${inputText}</color>`;
             }
-            document.getElementById('outText').innerHTML = oText;
+            outholder(showText, outputText);
+        }
+        
+        // 生成随机十六进制颜色代码，避开包含字母b的情况
+        function getRandomColor() {
+            let rc;
+            do {
+                rc = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            } while (rc.indexOf('b')!== -1);
+            return rc;
+        }
+
+
+        //输出内容
+        function outholder(sText, outputText) {
+            document.getElementById('outText').innerHTML = sText;
             document.getElementById('textOutput').textContent = outputText;
         }
 
@@ -110,7 +129,7 @@
         // 添加键盘事件监听，关联回车键与生成随机颜色按钮功能
         document.getElementById('inputText').addEventListener('keydown', function (e) {
             if (e.key === "Enter") {
-                colorizeText();
+                colorizeText(true);
             }
         });
     </script>
