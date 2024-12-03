@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>青云志</title>
+    <title>Kwok</title>
     <style>
         body {
             background-color: #f0f0f0;
@@ -48,8 +48,8 @@
         function setRandomColorsToEachChar() {
             for (let i = 0; i < inputText.length; i++) {
                 const charSpan = document.createElement('span');
-                charSpan.textContent = "\>" + inputText[i] + ＂\</color\>;
-                charSpan.style.color = ＂\<color=" + getRandomColor();
+                charSpan.textContent = ｀\>"${inputText[i]}\</color\>`;
+                charSpan.style.color = ｀\<color=${getRandomColor()}`;
                 OutBox.appendChild(charSpan);
             }
         }
