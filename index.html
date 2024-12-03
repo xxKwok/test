@@ -45,7 +45,7 @@
             height: 120px;
             margin-bottom: 10px;
             padding: 5px;
-            pointer-events: none;
+            //pointer-events: none;
         }
 
         /* 用于并列按钮的容器样式 */
@@ -68,7 +68,7 @@
             <button onclick="copyText()" style="margin-right: 10px;">点击复制</button>
             <button onclick="clearText()">清空内容</button>
         </div>
-        <textarea id="textOutput"></textarea>
+        <textarea id="textOutput" readonly></textarea>
         <div id="outText" style="font-size: 16px;"></div>
     </div>
 
@@ -110,7 +110,7 @@
 
         // 清空输入框
         function clearText() {
-            document.getElementById('textOutput').textContent = '';
+            document.getElementById('textOutput').value = '';
             document.getElementById('outText').innerHTML = '';
             document.getElementById('inputText').value = '';
         }
