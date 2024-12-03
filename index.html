@@ -26,7 +26,7 @@
 
         /* 输入框样式 */
         input[type="text"] {
-            width: 200px;
+            width: 205px;
             margin-bottom: 10px;
             padding: 5px;
         }
@@ -35,13 +35,13 @@
         button {
             width: 100px;
             padding: 5px;
-            margin-right: 5px;
+            //margin-right: 5px;
             margin-bottom: 10px;
         }
 
         /* 大输入框样式 */
         textarea {
-            width: 200px;
+            width: 205px;
             height: 120px;
             margin-bottom: 10px;
             padding: 5px;
@@ -49,6 +49,7 @@
 
         /* 用于并列两个按钮的容器样式 */
      .buttons-container {
+            width: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -60,10 +61,10 @@
     <p id="outText"></p>
     <div class="container">
         <input type="text" id="inputText" placeholder="请输入文字">
-        <button onclick="colorizeText()">生成随机颜色</button>
+        <button onclick="colorizeText()" style="margin-right: 10px;">生成随机颜色</button>
         <textarea id="textOutput"></textarea>
         <div class="buttons-container">
-            <button onclick="clearText()">清空内容</button>
+            <button onclick="clearText()" style="margin-right: 10px;">清空内容</button>
             <button onclick="copyText()">点击复制</button>
         </div>
     </div>
