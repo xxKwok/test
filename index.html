@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+3<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -81,7 +81,7 @@
                     randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
                 } while (randomColor.indexOf('b')!== -1);
                 oText += `<span style="color:${randomColor}">${inputText[i]}</span>`;
-                outputText += inputText[i];
+                outputText += `<color=${randomColor}>${inputText[i]}</color>`;
             }
             document.getElementById('outText').innerHTML = oText;
             document.getElementById('textOutput').textContent = outputText;
