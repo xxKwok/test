@@ -4,59 +4,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kwok</title>
+    <title>爱坤大坤坤</title>
     <style>
         body {
             background-color: #f0f0f0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            /* height: 100vh; */
             margin: 0;
-            font-size: 24px;
+            font-size: 25px;
         }
 
-        #OutBox {
-            text-align: center;
+        /* 整体容器样式 */
+      .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 输入框样式 */
+        input[type="text"] {
+            width: 200px;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        /* 按钮样式 */
+        button {
+            width: 100px;
+            padding: 5px;
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* 大输入框样式 */
+        textarea {
+            width: 200px;
+            height: 120px;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        /* 用于并列两个按钮的容器样式 */
+      .buttons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 
 <body>
-    
-  <input type="text" id="inputText" placeholder="请输入文字">
-  <button onclick="colorizeText()">生成随机颜色</button>
-  <div id="OutBox" contenteditable="false" style="width: 300px; height: 150px;></div>
+    <p id="outText"></p>
+    <div class="container">
+        <input type="text" id="inputText" placeholder="请输入文字">
+        <button onclick="colorizeText()">生成随机颜色</button>
+        <textarea id="textOutput"></textarea>
+        <div class="buttons-container">
+            <button onclick="clearText()">清空内容</button>
+            <button onclick="copyText()">点击复制</button>
+        </div>
+    </div>
+
     <script>
-        // 生成随机颜色的函数
-        function getRandomColor() {
-            let letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
-        // 内容
-        const inputText = document.getElementById('inputText').value;
-        
-        // 获取用于显示的元素
-        const OutBox = document.getElementById('OutBox');
-
-        // 将每个字设置为不同随机颜色并添加到页面
-        function setRandomColorsToEachChar() {
+        // 生成随机颜色
+        function colorizeText() {
+            let inputText = document.getElementById('inputText').value;
+            let outputText = '';
+            let oText = '';
             for (let i = 0; i < inputText.length; i++) {
-                const charSpan = document.createElement('span');
-                charSpan.textContent = inputText[i];
-                charSpan.style.color = getRandomColor();
-                OutBox.appendChild(charSpan);
+                // 生成随机十六进制颜色代码
+                let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                oText += `<span style="color:${randomColor}">${inputText[i]}</span>`;
+                outputText += `<color=${randomColor}>${inputText[i]}</color>`;
+            }
+            document.getElementById('outText').innerHTML = oText;
+            document.getElementById('textOutput').textContent = outputText;
+        }
+
+        // 清空输入框
+        function clearText() {
+            document.getElementById('textOutput').textContent = '';
+            document.getElementById('outText').innerHTML = '';
+            document.getElementById('inputText').value = '';
+        }
+
+        // 复制到剪切板
+        function copyText() {
+            var input = document.getElementById('textOutput');
+            input.select();
+            try {
+                document.execCommand('copy');
+                // alert('内容已成功复制到剪切板');
+            } catch (err) {
+                console.error('复制到剪切板时出错：', err);
             }
         }
 
-        // 页面加载时执行设置每个字颜色的操作
-        window.onload = setRandomColorsToEachChar;
+        // 添加键盘事件监听，关联回车键与生成随机颜色按钮功能
+        document.getElementById('inputText').addEventListener('keydown', function (e) {
+            if (e.key === "Enter") {
+                colorizeText();
+            }
+        });
     </script>
 </body>
-
 </html>
