@@ -1,24 +1,62 @@
 <!DOCTYPE html>
-<html>
-<style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      height: 100vh;
-      margin: 0;
-    }
-</style>
-<body>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青云志</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        #OutBox {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    
   <input type="text" id="inputText" placeholder="请输入文字">
   <button onclick="colorizeText()">生成随机颜色</button>
-  <div id="bigInputBox" contenteditable="false" style="width: 300px; height: 150px; border: 1px solid #ccc; padding: 10px; overflow-y: auto;">
-      <p id="textOutput"></p>
-  </div>
+  <div id="OutBox" contenteditable="false" style="width: 300px; height: 150px;></div>
+    <script>
+        // 生成随机颜色的函数
+        function getRandomColor() {
+            let letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
 
-  <script src="script.js"></script>
+        // 内容
+        const inputText = document.getElementById('inputText').value;
+        
+        // 获取用于显示的元素
+        const OutBox = document.getElementById('inputBox');
+
+        // 将每个字设置为不同随机颜色并添加到页面
+        function setRandomColorsToEachChar() {
+            for (let i = 0; i < inputText.length; i++) {
+                const charSpan = document.createElement('span');
+                charSpan.textContent = inputText[i];
+                charSpan.style.color = getRandomColor();
+                OutBox.appendChild(charSpan);
+            }
+        }
+
+        // 页面加载时执行设置每个字颜色的操作
+        window.onload = setRandomColorsToEachChar;
+    </script>
 </body>
 
 </html>
