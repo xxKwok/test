@@ -88,11 +88,11 @@
            if (b) {
                 for (let i = 0; i < inputText.length; i++) {
                     randomColor = getRandomColor();
-                    showText += `<span style="color:${randomColor}">${inputText[i]}</span>`;
-                    outputText += `<color=${randomColor}>${inputText[i]}</color>`;
+                    showText += `<span style="color:#${randomColor}">${inputText[i]}</span>`;
+                    outputText += `<color=${randomColor}>${inputText[i]}`;
                 }
             } else if (!b) {
-                showText = `<span style="color:${randomColor}">${inputText}</span>`;
+                showText = `<span style="color:#${randomColor}">${inputText}</span>`;
                 outputText = `<color=${randomColor}>${inputText}`;
             }
             outholder(showText, outputText);
