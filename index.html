@@ -93,7 +93,7 @@
                 }
             } else if (!b) {
                 showText = `<span style="color:${randomColor}">${inputText}</span>`;
-                outputText = `<color=${randomColor}>${inputText}</color>`;
+                outputText = `<color=${randomColor}>${inputText}`;
             }
             outholder(showText, outputText);
         }
@@ -102,7 +102,7 @@
         function getRandomColor() {
             let rc;
             do {
-                rc = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+                rc = Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
             } while (rc.indexOf('b')!== -1);
             return rc;
         }
