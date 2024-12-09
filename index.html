@@ -67,7 +67,7 @@
 <body>
     <div class="container">
     <p>随机颜色生成</p>
-        <input type="text" id="inputText" placeholder="请输入文字" value="大坤坤">
+        <input type="text" id="inputText" placeholder="请输入文字" oninput="colorizeText(true)">
         <div class="buttons-container">
             <button onclick="colorizeText(true)" style="margin-right: 10px;">彩色文字</button>
             <button onclick="colorizeText(false)" style="margin-right: 10px;">单色文字</button>
@@ -79,6 +79,19 @@
     </div>
 
     <script>
+        // 定义要处理的字符串
+        const str = "大鸡巴,小鸡鸡,大鸡鸡,坤巴,大坤坤,小鸡巴,老鸡巴";
+        // 使用split方法将字符串按逗号进行切分，得到一个字符串数组
+        const parts = str.split(",");
+        // 定义函数来随机选取数组中的一个元素
+        function pickRandomPart(arr) {
+             const randomIndex = Math.floor(Math.random() * arr.length);
+             return arr[randomIndex];
+        }
+
+        document.getElementById('inputText').value = pickRandomPart(parts);
+
+
         // 生成随机颜色
         function colorizeText(b) {
             let inputText = document.getElementById('inputText').value;
@@ -88,12 +101,12 @@
             if (b) {
                 for (let i = 0; i < inputText.length; i++) {
                     randomColor = getRandomColor();
-                    showText += `<span style="color:${randomColor}">${inputText[i]}</span>`;
-                    outputText += `<color=${randomColor}>${inputText[i]}</color>`;
+                    showText += `<span style="color:#${randomColor}">${inputText[i]}</span>`;
+                    outputText += `<color=${randomColor}>${inputText[i]}`;
                 }
             } else if (!b) {
-                showText = `<span style="color:${randomColor}">${inputText}</span>`;
-                outputText = `<color=${randomColor}>${inputText}</color>`;
+                showText = `<span style="color:#${randomColor}">${inputText}</span>`;
+                outputText = `<color=${randomColor}>${inputText}`;
             }
             outholder(showText, outputText);
         }
@@ -102,7 +115,7 @@
         function getRandomColor() {
             let rc;
             do {
-                rc = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+                rc = Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
             } while (rc.indexOf('b')!== -1);
             return rc;
         }
@@ -138,12 +151,7 @@
                 colorizeText(true);
             }
         });
-        
-        // 监听输入框的input事件
-        document.getElementById('inputText').addEventListener('input', function() {
-            colorizeText(true);
-        });
-
+ 
         // 生成彩色文字
         colorizeText(true);
     </script>
