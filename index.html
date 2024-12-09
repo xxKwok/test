@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>爱坤大坤坤</title>
+    <title>随机颜色生成</title>
     <style>
         body {
             background-color: #f0f0f0;
@@ -12,8 +12,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* height: 100vh; */
-            margin: 30px 50px;
+            margin: 10px 50px;
             font-size: 25px;
         }
 
@@ -42,7 +41,7 @@
         /* 大输入框样式 */
         textarea {
             width: 205px;
-            height: 120px;
+            height: 125px;
             margin-bottom: 10px;
             padding: 5px;
         }
@@ -55,6 +54,7 @@
             align-items: center;
         }
 
+        /* 用于显示颜色效果样式 */
         .showText {
             font-size: 16px;
             max-width: 215px;
@@ -74,7 +74,7 @@
             <button onclick="copyText()" style="margin-right: 10px;">点击复制</button>
             <button onclick="clearText()">清空内容</button>
         </div>
-        <textarea id="textOutput" readonly></textarea>
+        <textarea id="textOutput"></textarea>
         <div class="showText" id="outText"></div>
     </div>
 
@@ -85,15 +85,15 @@
             let outputText = '';
             let showText = '';
             let randomColor = getRandomColor();
-           if (b) {
+            if (b) {
                 for (let i = 0; i < inputText.length; i++) {
                     randomColor = getRandomColor();
-                    showText += `<span style="color:#${randomColor}">${inputText[i]}</span>`;
-                    outputText += `<color=${randomColor}>${inputText[i]}`;
+                    showText += `<span style="color:${randomColor}">${inputText[i]}</span>`;
+                    outputText += `<color=${randomColor}>${inputText[i]}</color>`;
                 }
             } else if (!b) {
-                showText = `<span style="color:#${randomColor}">${inputText}</span>`;
-                outputText = `<color=${randomColor}>${inputText}`;
+                showText = `<span style="color:${randomColor}">${inputText}</span>`;
+                outputText = `<color=${randomColor}>${inputText}</color>`;
             }
             outholder(showText, outputText);
         }
@@ -102,11 +102,10 @@
         function getRandomColor() {
             let rc;
             do {
-                rc = Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+                rc = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
             } while (rc.indexOf('b')!== -1);
             return rc;
         }
-
 
         //输出内容
         function outholder(sText, outputText) {
@@ -139,6 +138,14 @@
                 colorizeText(true);
             }
         });
+        
+        // 监听输入框的input事件
+        document.getElementById('inputText').addEventListener('input', function() {
+            colorizeText(true);
+        });
+
+        // 生成彩色文字
+        colorizeText(true);
     </script>
 </body>
 </html>
