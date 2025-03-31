@@ -57,7 +57,7 @@
         /* 用于显示颜色效果样式 */
         .showText {
             font-size: 16px;
-            max-width: 215px;
+            //max-width: 215px;
             text-align: center;
             word-break: break-all;
         }
@@ -102,11 +102,11 @@
                 for (let i = 0; i < inputText.length; i++) {
                     randomColor = getRandomColor();
                     showText += `<span style="color:#${randomColor}">${inputText[i]}</span>`;
-                    outputText += `<color=${randomColor}>${inputText[i]}`;
+                    outputText += `<color=#${randomColor}>${inputText[i]}</color>`;
                 }
             } else if (!b) {
                 showText = `<span style="color:#${randomColor}">${inputText}</span>`;
-                outputText = `<color=${randomColor}>${inputText}`;
+                outputText = `<color=#${randomColor}>${inputText}</color>`;
             }
             outholder(showText, outputText);
         }
